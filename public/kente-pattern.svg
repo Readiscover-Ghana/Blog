@@ -1,0 +1,14 @@
+<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="kente" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="60" height="60" fill="#FFF"/>
+        <rect x="0" y="10" width="60" height="2" fill="#CE1126" opacity="0.1"/>
+        <rect x="0" y="30" width="60" height="2" fill="#FCD116" opacity="0.1"/>
+        <rect x="0" y="50" width="60" height="2" fill="#006B3F" opacity="0.1"/>
+        <rect x="10" y="0" width="2" height="60" fill="#CE1126" opacity="0.1"/>
+        <rect x="30" y="0" width="2" height="60" fill="#FCD116" opacity="0.1"/>
+        <rect x="50" y="0" width="2" height="60" fill="#006B3F" opacity="0.1"/>
+      </pattern>
+    </defs>
+    <rect x="0" y="0" width="60" height="60" fill="url(#kente)"/>
+  </svg>
