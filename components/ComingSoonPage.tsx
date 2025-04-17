@@ -11,7 +11,7 @@ const ComingSoonPage = () => {
   launchDate.setDate(launchDate.getDate() + 30);
 
   return (
-    <div className="min-h-screen bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: 'url("/akrade.webp")' }}>
+    <div className="min-h-screen bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: 'url("/akrade.jpg")' }}>
       <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]"></div>
       
       {/* Top Kente Border */}
