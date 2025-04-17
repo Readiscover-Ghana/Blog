@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
 import NewsletterForm from './NewsletterForm';
-import SocialLinks from './SocialLinks';
+// import SocialLinks from './SocialLinks';
 import Logo from './Logo';
 
 const ComingSoonPage = () => {
@@ -39,10 +39,10 @@ const ComingSoonPage = () => {
           
           <NewsletterForm />
           
-          <div className="mt-10 text-center">
+          {/* <div className="mt-10 text-center">
             <p className="text-sm text-gray-500 mb-4">Follow us for updates:</p>
             <SocialLinks />
-          </div>
+          </div> */}
         </Card>
       </div>
       
