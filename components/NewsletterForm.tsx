@@ -4,51 +4,81 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { toast } from "@/components/ui/use-toast";
+import { Controller, useForm } from 'react-hook-form';
+import axios from 'axios';
+
+type FormValues = {
+  email: string;
+};
 
 const NewsletterForm = () => {
-  const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const { handleSubmit, reset, control } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+    },
+    mode: 'onBlur',
+  });
+
+  const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    
-    // Simulating API call
-    setTimeout(() => {
-      toast({
-        title: "Thank you for subscribing!",
-        description: "We'll notify you when we launch.",
-      });
-      setEmail('');
+    setMessage(null);
+
+    try {
+      const res = await axios.post('/api/waitlist', { email: data.email });
+
+      if (res.status === 200) {
+        setMessage('🎉 You’ve been added to the waitlist!');
+        reset();
+      }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      const errorMsg =
+        '❌ Something went wrong';
+      setMessage(errorMsg);
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
     <Card className="p-6 bg-white/80 backdrop-blur-sm border-ghana-yellow">
-      <h3 className="text-xl font-semibold mb-3 text-ghana-black">Get notified when we launch</h3>
+      <h3 className="text-xl font-semibold mb-3 text-ghana-black">
+        Get notified when we launch
+      </h3>
       <p className="text-sm text-gray-600 mb-4">
         Be the first to discover Ghana&apos;s untold stories, culture and hidden gems.
       </p>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="flex-grow border-ghana-green/50 focus-visible:ring-ghana-green"
-          disabled={isSubmitting}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3">
+        <Controller
+          control={control}
+          name="email"
+          render={({ field }) => (
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              {...field}
+              required
+              className="flex-grow border-ghana-green/50 focus-visible:ring-ghana-green"
+              disabled={isSubmitting}
+            />
+          )}
         />
-        <Button 
-          type="submit" 
+        <Button
+          type="submit"
           disabled={isSubmitting}
           className="bg-ghana-green hover:bg-ghana-green/90 text-white"
         >
           {isSubmitting ? 'Subscribing...' : 'Notify Me'}
         </Button>
       </form>
+
+      {message && (
+        <p className="text-sm mt-4 text-center text-ghana-black">{message}</p>
+      )}
     </Card>
   );
 };
