@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Controller, useForm } from 'react-hook-form';
-import axios from 'axios';
+// import axios from 'axios';
 
 type FormValues = {
   email: string;
@@ -15,7 +15,7 @@ const NewsletterForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
-  const { handleSubmit, reset, control } = useForm<FormValues>({
+  const { handleSubmit, control, reset } = useForm<FormValues>({
     defaultValues: {
       email: '',
     },
@@ -25,22 +25,24 @@ const NewsletterForm = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     setMessage(null);
+    console.log('Form submitted:', data);
+    reset();
 
-    try {
-      const res = await axios.post('/api/waitlist', { email: data.email });
+    // try {
+    //   const res = await axios.post('/api/waitlist', { email: data.email });
 
-      if (res.status === 200) {
-        setMessage('🎉 You’ve been added to the waitlist!');
-        reset();
-      }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      const errorMsg =
-        '❌ Something went wrong';
-      setMessage(errorMsg);
-    } finally {
-      setIsSubmitting(false);
-    }
+    //   if (res.status === 200) {
+    //     setMessage('🎉 You’ve been added to the waitlist!');
+    //     reset();
+    //   }
+    // // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // } catch (error) {
+    //   const errorMsg =
+    //     '❌ Something went wrong';
+    //   setMessage(errorMsg);
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   return (
