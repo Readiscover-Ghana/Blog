@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import CountdownTimer from './CountdownTimer';
-import NewsletterForm from './NewsletterForm';
 // import SocialLinks from './SocialLinks';
 import Logo from './Logo';
+import { Book, Rocket, Sparkles, Users } from 'lucide-react';
 
 const ComingSoonPage = () => {
   // Set launch date to 30 days from now
@@ -35,14 +35,41 @@ const ComingSoonPage = () => {
             Launching in:
           </h2>
           
-          <CountdownTimer targetDate={launchDate} className="mb-10" />
+          <CountdownTimer targetDate={launchDate} className="mb-5" />
           
-          <NewsletterForm />
-          
-          {/* <div className="mt-10 text-center">
-            <p className="text-sm text-gray-500 mb-4">Follow us for updates:</p>
-            <SocialLinks />
-          </div> */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            <div className="p-6 rounded-lg bg-white/50 backdrop-blur-sm border border-ghana-yellow/20 hover:border-ghana-yellow transition-colors group">
+              <div className="flex items-center gap-3 mb-3">
+                <Sparkles className="w-6 h-6 text-ghana-yellow animate-pulse" />
+                <h3 className="font-semibold text-lg text-ghana-black">Cultural Stories</h3>
+              </div>
+              <p className="text-gray-600 group-hover:text-gray-800 transition-colors">Dive deep into Ghana&apos;s rich traditions and cultural heritage through our carefully curated stories.</p>
+            </div>
+            
+            <div className="p-6 rounded-lg bg-white/50 backdrop-blur-sm border border-ghana-red/20 hover:border-ghana-red transition-colors group">
+              <div className="flex items-center gap-3 mb-3">
+                <Book className="w-6 h-6 text-ghana-red animate-pulse" />
+                <h3 className="font-semibold text-lg text-ghana-black">Historical Insights</h3>
+              </div>
+              <p className="text-gray-600 group-hover:text-gray-800 transition-colors">Explore Ghana&apos;s fascinating history through expert analysis and compelling narratives.</p>
+            </div>
+            
+            <div className="p-6 rounded-lg bg-white/50 backdrop-blur-sm border border-ghana-green/20 hover:border-ghana-green transition-colors group">
+              <div className="flex items-center gap-3 mb-3">
+                <Users className="w-6 h-6 text-ghana-green animate-pulse" />
+                <h3 className="font-semibold text-lg text-ghana-black">Community Stories</h3>
+              </div>
+              <p className="text-gray-600 group-hover:text-gray-800 transition-colors">Read authentic stories from local communities sharing their unique perspectives.</p>
+            </div>
+            
+            <div className="p-6 rounded-lg bg-white/50 backdrop-blur-sm border border-ghana-black/20 hover:border-ghana-black transition-colors group">
+              <div className="flex items-center gap-3 mb-3">
+                <Rocket className="w-6 h-6 text-ghana-black animate-pulse" />
+                <h3 className="font-semibold text-lg text-ghana-black">Modern Ghana</h3>
+              </div>
+              <p className="text-gray-600 group-hover:text-gray-800 transition-colors">Discover how Ghana&apos;s past shapes its vibrant present and promising future.</p>
+            </div>
+            </div>
         </Card>
       </div>
       
